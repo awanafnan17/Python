@@ -3,18 +3,33 @@ import random
 randNo = random.randint(1, 100)
 userguess = None
 guess = 0
-while (userguess != randNo):
-    userguess = int(input("Guess a number between 1-100: "))
-    guess += 1
-    if userguess == randNo:
-        print('Correct Number! \n')
-    else:
-        if userguess > randNo:
-            print('\nTry Again! Lower Number Please. ')
-        elif userguess< randNo:
-           print('\nTry Again! Higher Number Please. ')
+print("Press q to quit the game.")
 
-print(f"You guessed the number in {guess} tries.")
+while (userguess != randNo or userguess == randNo):
+    try:
+        userguess = input("Guess a number between 1-100: ")
+        guess += 1
+        if userguess == 'q':
+            break
+        userguess = int(userguess)
+        if userguess == randNo:
+            print('Correct Number! \n')
+        else:
+            if userguess > randNo:
+                print('\nTry Again! Lower Number Please. ')
+            elif userguess< randNo:
+                print('\nTry Again! Higher Number Please. ')
+    except Exception as e:
+        print(f"Your input resulted in an error: {e}")
+
+
+if userguess != 'q':
+    print(f"You guessed the number in {guess} tries.")
+else:
+    print('Thanks for playing this game.')
+
+
+
 
 with open('highscore.txt', 'r') as f:
     highscore = int(f.read())
