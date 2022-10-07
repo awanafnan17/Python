@@ -5,7 +5,7 @@ userguess = None
 guess = 0
 print("Press q to quit the game.")
 
-while (userguess != randNo or userguess == randNo):
+while (True):
     try:
         userguess = input("Guess a number between 1-100: ")
         guess += 1
@@ -13,7 +13,9 @@ while (userguess != randNo or userguess == randNo):
             break
         userguess = int(userguess)
         if userguess == randNo:
-            print('Correct Number! \n')
+            print('\nCorrect Number!')
+            print(f"You guessed the number in {guess} tries.\n")
+            
         else:
             if userguess > randNo:
                 print('\nTry Again! Lower Number Please. ')
@@ -23,12 +25,10 @@ while (userguess != randNo or userguess == randNo):
         print(f"Your input resulted in an error: {e}")
 
 
-if userguess != 'q':
+if userguess != 'q' or userguess == randNo:
     print(f"You guessed the number in {guess} tries.")
 else:
     print('Thanks for playing this game.')
-
-
 
 
 with open('highscore.txt', 'r') as f:
